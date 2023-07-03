@@ -24,7 +24,7 @@ BreachType classifyTemperatureBreach(
   }
   else
   {
-	  return -1;
+     return -1;
   }
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
