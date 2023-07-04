@@ -34,7 +34,10 @@ void checkAndAlert(
   BreachType breachType = classifyTemperatureBreach(
     batteryChar.coolingType, temperatureInC
   );
-
+ if(breachType == -1)
+ {
+   return 0;
+ }
   switch(alertTarget) {
     case TO_CONTROLLER:
       sendToController(breachType);
