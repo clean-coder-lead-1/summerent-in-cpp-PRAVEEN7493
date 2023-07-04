@@ -1,8 +1,8 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
-  int LowerLimit[MAX_Cooling] = { 0,  0,  0};
-  int UpperLimit[MAX_Cooling] = {35, 45, 40};
+int LowerTempLimit[MAX_Cooling] = { 0,  0,  0};
+int UpperTempLimit[MAX_Cooling] = {35, 45, 40};
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -16,16 +16,14 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
 
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
-
+  int lowerLimit = 0;
+  int upperLimit = 0;
   if(coolingType < MAX_Cooling)
   {
-    int lowerLimit = LowerLimit[coolingType];
-    int upperLimit = UpperLimit[coolingType];
-    return inferBreach(temperatureInC, lowerLimit, upperLimit);
+    lowerLimit = LowerTempLimit[coolingType];
+    upperLimit = UpperTempLimit[coolingType];
   }
-  else
-     return -1;
-  }
+  return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
 void checkAndAlert(
@@ -59,8 +57,6 @@ void sendToEmail(BreachType breachType) {
     case TOO_HIGH:
       printf("To: %s\n", recepient);
       printf("Hi, the temperature is too high\n");
-      break;
-    case NORMAL:
       break;
   }
 }
