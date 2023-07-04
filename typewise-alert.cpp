@@ -15,11 +15,12 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
 
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
-
+  double lowerLimit = 0;
+  double upperLimit = 0;
   if(coolingType < MAX_Cooling)
   {
-    double lowerLimit = LowerLimit[coolingType];
-    double upperLimit = UpperLimit[coolingType];
+    lowerLimit = LowerLimit[coolingType];
+    upperLimit = UpperLimit[coolingType];
     return inferBreach(temperatureInC, lowerLimit, upperLimit);
   }
   else
