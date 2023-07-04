@@ -21,11 +21,6 @@ BreachType classifyTemperatureBreach(
   {
     lowerLimit = LowerLimit[coolingType];
     upperLimit = UpperLimit[coolingType];
-    return inferBreach(temperatureInC, lowerLimit, upperLimit);
-  }
-  else
-  {
-     return -1;
   }
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
