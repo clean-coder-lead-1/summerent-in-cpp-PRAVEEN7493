@@ -1,9 +1,8 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
-//modifying this array if the cooling values changes, Increase/decrease the array size based on the colling type
-int LowerLimit[MAX_Cooling] = { 0,  0,  0};
-int UpperLimit[MAX_Cooling] = {35, 45, 40};
+  int LowerLimit[MAX_Cooling] = { 0,  0,  0};
+  int UpperLimit[MAX_Cooling] = {35, 45, 40};
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -17,6 +16,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
 
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
+
   if(coolingType < MAX_Cooling)
   {
     int lowerLimit = LowerLimit[coolingType];
@@ -24,7 +24,6 @@ BreachType classifyTemperatureBreach(
     return inferBreach(temperatureInC, lowerLimit, upperLimit);
   }
   else
-  { 
      return -1;
   }
 }
